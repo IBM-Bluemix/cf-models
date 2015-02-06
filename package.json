@@ -1,0 +1,29 @@
+{
+  "name":               "cf-models",
+  "version":            "0.1.0",
+  "description":        "access live Cloud Foundry models",
+  "author":             "pmuellr",
+  "main":               "lib/cf-models",
+  "scripts": {
+    "jbuild":           "jbuild",
+    "watch":            "jbuild watch"
+  },
+  "homepage":           "https://github.com/IBM-Bluemix/cf-models",
+  "license":            "Apache-2.0",
+  "repository": {
+    "type":             "git",
+    "url" :             "https://github.com/IBM-Bluemix/cf-models.git"
+  },
+  "dependencies": {
+    "underscore":       "1.7.x"
+  },
+  "devDependencies": {
+    "6to5":             "3.3.x",
+    "coffee-script":    "1.9.x",
+    "expect.js":        "0.3.x",
+    "jbuild":           "1.0.x",
+    "jshint":           "2.6.x",
+    "mocha":            "2.1.x",
+    "typescript":       "1.4.x"
+  }
+}
