@@ -6,15 +6,17 @@ require("./6to5-runtime")
 
 const spawn = require("child_process").spawn
 
-const Q = require("Q")
+const Q = require("q")
 
 const v2API = require("./cf-models-v2")
 const utils = require("./utils")
+const curl  = require("./curl")
 
 //------------------------------------------------------------------------------
 exports.version   = utils.VERSION
 exports.v2        = v2API
 exports.cfVersion = cfVersion
+exports.pageSize  = curl.pageSize
 
 //------------------------------------------------------------------------------
 function cfVersion() {

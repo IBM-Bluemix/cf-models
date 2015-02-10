@@ -6,10 +6,13 @@ require("./6to5-runtime")
 
 const pkg = require("../package.json")
 
+const debug = require("debug")
+
 exports.NAME    = pkg.name
 exports.VERSION = pkg.version
 
 exports.callOnce    = callOnce
+exports.debug       = createDebug
 exports.JS          = JS
 exports.JL          = JL
 
@@ -26,6 +29,11 @@ function callOnce(fn) {
 
     fn.apply(this, args)
   }
+}
+
+//------------------------------------------------------------------------------
+function createDebug(name) {
+  return debug(`${pkg.name}:${name}`)
 }
 
 //------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ mkdir "-p", "tmp"
 
 #-------------------------------------------------------------------------------
 tasks.build = ->
-  syntaxCheckTypeScript "cf-models-def.ts"
+  # syntaxCheckTypeScript "cf-models-def.ts"
 
   #log "linting ..."
   # jshint "lib-src/*.js"
