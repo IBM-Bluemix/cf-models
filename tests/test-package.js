@@ -2,45 +2,37 @@
 
 "use strict"
 
-const spawn = require("child_process").spawn
+const _ = require("underscore")
 
-const debug = require("debug")
-
-const v2API = require("./cf-models-v2")
-const utils = require("./utils")
-const curl  = require("./curl")
+const cfModels = require("..")
+const apiv2    = cfModels.v2
 
 //------------------------------------------------------------------------------
-exports.version   = utils.VERSION
-exports.v2        = v2API
-exports.cfVersion = cfVersion
-exports.pageSize  = curl.pageSize
+module.exports = tester
 
 //------------------------------------------------------------------------------
-function cfVersion() {
-  return utils.runCfCommand(["--version"])
+function tester(t) {
 
-  .then(function(status) {
-    if (status.code != 0) throw new Error("error getting cf version: ${code}")
+  //----------------------------------------------------------------------------
+  t.test("version should be a semver", function(t) {
+    let match = cfModels.version.match(/^\d+\.\d+\.\d+(.*)$/)
 
-    return parseVersionString(status.stdout)
+    t.ok(match, "cfModels.version not acceptable: ${cfModels.version}")
+    t.end()
   })
-}
 
-//------------------------------------------------------------------------------
-function parseVersionString(string) {
-  let match = string.match(/.*(\d+)\.(\d+)\.(.*)\n$/)
+  //----------------------------------------------------------------------------
+  t.test("should export object `v2`", function(t) {
+    t.ok(apiv2, "cfModels.v2 should be a thing")
+    t.end()
+  })
 
-  if (!match) return {
-    full: string
-  }
+  //----------------------------------------------------------------------------
+  t.test("should export function `v2.info`", function(t) {
+    t.ok(_.isFunction(apiv2.info), "cfModels.v2.info should be a function")
+    t.end()
+  })
 
-  return {
-    full: `${match[1]}.${match[2]}.${match[3]}`,
-    major: match[1],
-    minor: match[2],
-    build: match[3],
-  }
 }
 
 //------------------------------------------------------------------------------

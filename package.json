@@ -5,8 +5,9 @@
   "author":             "pmuellr",
   "main":               "lib/cf-models",
   "scripts": {
-    "jbuild":           "jbuild",
-    "watch":            "jbuild watch"
+    "cake":             "cake",
+    "watch":            "cake watch",
+    "test":             "cake test"
   },
   "homepage":           "https://github.com/IBM-Bluemix/cf-models",
   "license":            "Apache-2.0",
@@ -16,16 +17,12 @@
   },
   "dependencies": {
     "debug":            "2.1.x",
-    "q":                "1.1.x",
     "underscore":       "1.7.x"
   },
   "devDependencies": {
-    "6to5":             "3.3.x",
+    "cakex":            "0.1.x",
     "coffee-script":    "1.9.x",
-    "expect.js":        "0.3.x",
-    "jbuild":           "1.0.x",
-    "jshint":           "2.6.x",
-    "mocha":            "2.1.x",
-    "typescript":       "1.4.x"
+    "tape":             "3.5.x",
+    "faucet":           "0.0.x"
   }
 }

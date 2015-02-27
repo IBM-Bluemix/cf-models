@@ -2,43 +2,42 @@
 
 "use strict"
 
-require("./6to5-runtime")
+const path = require("path")
+
+const tape   = require("tape")
+const faucet = require("faucet")
 
 const pkg = require("../package.json")
 
-const debug = require("debug")
-
-exports.NAME    = pkg.name
-exports.VERSION = pkg.version
-
-exports.callOnce    = callOnce
-exports.debug       = createDebug
-exports.JS          = JS
-exports.JL          = JL
+const PACKAGE = pkg.name
 
 //------------------------------------------------------------------------------
-function callOnce(fn) {
-  let called = false
+const formatter = faucet()
 
-  return calledOnceShim
+tape.createStream()
+  .pipe(formatter)
+  .pipe(process.stdout)
 
-  //-----------------------------------
-  function calledOnceShim(...args) {
-    if (called) return
-    called = true
+//------------------------------------------------------------------------------
+runTests("test-package")
+runTests("test-utils")
+runTests("test-orgs")
 
-    fn.apply(this, args)
-  }
+//------------------------------------------------------------------------------
+function runTests(modName) {
+  tape(`running tests: ${PACKAGE}/${modName}`, function (t) {
+    require(`./${modName}`)(t)
+    t.end()
+
+    //try {
+    //  require(`./${modName}`)(t)
+    //}
+    //catch (err) {
+    //  console.log(`exiting: ${err.stack}`)
+    //  process.exit()
+    //}
+  })
 }
-
-//------------------------------------------------------------------------------
-function createDebug(name) {
-  return debug(`${pkg.name}:${name}`)
-}
-
-//------------------------------------------------------------------------------
-function JS(object) { return JSON.stringify(object) }
-function JL(object) { return JSON.stringify(object, null, 4) }
 
 //------------------------------------------------------------------------------
 // Licensed under the Apache License, Version 2.0 (the "License");
