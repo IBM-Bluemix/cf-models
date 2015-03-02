@@ -3,7 +3,7 @@
   "version":            "0.1.0",
   "description":        "access live Cloud Foundry models",
   "author":             "pmuellr",
-  "main":               "lib/cf-models",
+  "main":               "./lib/cf-models",
   "scripts": {
     "cake":             "cake",
     "watch":            "cake watch",
