@@ -14,7 +14,7 @@ module.exports = tester
 function tester(t) {
 
   //----------------------------------------------------------------------------
-  t.test("version should be a semver", function(t) {
+  t.test("- version should be a semver", function(t) {
     let match = cfModels.version.match(/^\d+\.\d+\.\d+(.*)$/)
 
     t.ok(match, "cfModels.version not acceptable: ${cfModels.version}")
@@ -22,13 +22,13 @@ function tester(t) {
   })
 
   //----------------------------------------------------------------------------
-  t.test("should export object `v2`", function(t) {
+  t.test("- should export object `v2`", function(t) {
     t.ok(apiv2, "cfModels.v2 should be a thing")
     t.end()
   })
 
   //----------------------------------------------------------------------------
-  t.test("should export function `v2.info`", function(t) {
+  t.test("- should export function `v2.info`", function(t) {
     t.ok(_.isFunction(apiv2.info), "cfModels.v2.info should be a function")
     t.end()
   })

@@ -13,7 +13,7 @@ module.exports = tester
 function tester(t) {
 
   //----------------------------------------------------------------------------
-  t.test("deferred should be structurally sound", function(t) {
+  t.test("- deferred should be structurally sound", function(t) {
     let deferred = utils.defer()
 
     t.ok(deferred,         "defer() should return an object")
@@ -25,7 +25,7 @@ function tester(t) {
   })
 
   //----------------------------------------------------------------------------
-  t.test("deferred should be resolve correctly", function(t) {
+  t.test("- deferred should be resolve correctly", function(t) {
     let deferred = utils.defer()
     let promise  = deferred.promise
     let val      = {}
@@ -48,7 +48,7 @@ function tester(t) {
   })
 
   //----------------------------------------------------------------------------
-  t.test("deferred should be reject correctly", function(t) {
+  t.test("- deferred should be reject correctly", function(t) {
     let deferred = utils.defer()
     let promise  = deferred.promise
     let val      = new Error("test")
